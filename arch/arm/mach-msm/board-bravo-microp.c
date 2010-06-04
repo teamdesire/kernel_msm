@@ -98,12 +98,12 @@
 #define MICROP_I2C_WCMD_GPO_LED_STATUS_DIS		0x91
 
 /* Desire */
-#define IRQ_OJ 		(1<<12)
-#define IRQ_GSENSOR     (1<<10)  // non verificato
-#define IRQ_LSENSOR     (1<<9)   // non verificato
-#define IRQ_REMOTEKEY   (1<<7)
-#define IRQ_HEADSETIN	(1<<2)
-#define IRQ_SDCARD      (1<<0)
+#define IRQ_OJ 		(1<<12)  // verified in 2.6.29
+#define IRQ_GSENSOR     (1<<10)  // not verified
+#define IRQ_LSENSOR     (1<<9)   // non verified
+#define IRQ_REMOTEKEY   (1<<7)	 // verified in 2.6.29
+#define IRQ_HEADSETIN	(1<<2)	 // verified in 2.6.29
+#define IRQ_SDCARD      (1<<0)   // verified in 2.6.29
 
 /* Nexus
 #define IRQ_GSENSOR	(1<<10)
