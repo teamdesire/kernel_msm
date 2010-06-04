@@ -1,0 +1,11 @@
+Fix the i2c (microp) bus
+ * G-Sensor/Accellerometer
+ * Digital Compass
+ * GPS
+ * Light sensor
+ * LED
+ * Headphone
+ * Remotekey
+ * Optical
+
+Fix the Camera (crash the phone)
