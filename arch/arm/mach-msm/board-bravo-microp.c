@@ -1446,54 +1446,19 @@ static int gsensor_read_acceleration(short *buf)
 
 	msleep(10);
 
-	if (cdata->version <= 0x615) {
-		/*
-		 * Note the data is a 10bit signed value from the chip.
-		*/
-		ret = i2c_read_block(client, MICROP_I2C_RCMD_GSENSOR_X_DATA,
-				     tmp, 2);
-		if (ret < 0) {
-			dev_err(&client->dev, "%s: i2c_read_block fail\n",
-				__func__);
-			return ret;
-		}
-		buf[0] = (short)(tmp[0] << 8 | tmp[1]);
-		buf[0] >>= 6;
-
-		ret = i2c_read_block(client, MICROP_I2C_RCMD_GSENSOR_Y_DATA,
-				     tmp, 2);
-		if (ret < 0) {
-			dev_err(&client->dev, "%s: i2c_read_block fail\n",
-				__func__);
-			return ret;
-		}
-		buf[1] = (short)(tmp[0] << 8 | tmp[1]);
-		buf[1] >>= 6;
-
-		ret = i2c_read_block(client, MICROP_I2C_RCMD_GSENSOR_Z_DATA,
-				     tmp, 2);
-		if (ret < 0) {
-			dev_err(&client->dev, "%s: i2c_read_block fail\n",
-				__func__);
-			return ret;
-		}
-		buf[2] = (short)(tmp[0] << 8 | tmp[1]);
-		buf[2] >>= 6;
-	} else {
-		ret = i2c_read_block(client, MICROP_I2C_RCMD_GSENSOR_DATA,
-				     tmp, 6);
-		if (ret < 0) {
-			dev_err(&client->dev, "%s: i2c_read_block fail\n",
-				__func__);
-			return ret;
-		}
-		buf[0] = (short)(tmp[0] << 8 | tmp[1]);
-		buf[0] >>= 6;
-		buf[1] = (short)(tmp[2] << 8 | tmp[3]);
-		buf[1] >>= 6;
-		buf[2] = (short)(tmp[4] << 8 | tmp[5]);
-		buf[2] >>= 6;
+	ret = i2c_read_block(client, MICROP_I2C_RCMD_GSENSOR_DATA,
+				 tmp, 6);
+	if (ret < 0) {
+		dev_err(&client->dev, "%s: i2c_read_block fail\n",
+			__func__);
+		return ret;
 	}
+	buf[0] = (short)(tmp[0] << 8 | tmp[1]);
+	buf[0] >>= 6;
+	buf[1] = (short)(tmp[2] << 8 | tmp[3]);
+	buf[1] >>= 6;
+	buf[2] = (short)(tmp[4] << 8 | tmp[5]);
+	buf[2] >>= 6;
 
 #ifdef DEBUG_BMA150
 	/* Log this to debugfs */
@@ -1719,7 +1684,7 @@ static void microp_i2c_intr_work_func(struct work_struct *work)
 	pr_debug("intr_status=0x%02x\n", intr_status);
 
 	if (intr_status & IRQ_OJ) {
-		/* TODO */
+
 	}
 
 	if ((intr_status & IRQ_LSENSOR) || cdata->force_light_sensor_read) {

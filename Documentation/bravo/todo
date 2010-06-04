@@ -1,5 +1,4 @@
 Fix the i2c (microp) bus
- * G-Sensor/Accellerometer
  * Digital Compass
  * GPS
  * Light sensor
