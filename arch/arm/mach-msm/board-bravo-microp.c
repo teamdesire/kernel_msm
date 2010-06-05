@@ -1697,7 +1697,13 @@ static void microp_i2c_intr_work_func(struct work_struct *work)
 	pr_debug("intr_status=0x%02x\n", intr_status);
 
 	if (intr_status & IRQ_OJ) {
-
+		data[0] = 0x00;
+		if (i2c_write_block(client, MICROP_I2C_WCMD_OJ_INT_STATUS,
+				data, 1) < 0)
+			dev_err(&client->dev, "%s: clear OJ interrupt status fail\n",
+				__func__);
+		if (oj_callback && oj_callback->oj_intr)
+			oj_callback->oj_intr();
 	}
 
 	if ((intr_status & IRQ_LSENSOR) || cdata->force_light_sensor_read) {
@@ -1855,6 +1861,15 @@ static int microp_function_initialize(struct i2c_client *client)
 
 	microp_read_gpi_status(client, &stat);
 	bravo_microp_sdslot_update_status(stat);
+
+	if (oj_callback && oj_callback->oj_init) {
+		oj_callback->oj_init();
+		dev_err(&client->dev, "%s: OJ CALLBACK INIT\n",__func__);
+	}
+	else {
+		dev_err(&client->dev, "%s: OJ CALLBACK NOT SET\n",__func__);
+	}
+
 
 	return 0;
 

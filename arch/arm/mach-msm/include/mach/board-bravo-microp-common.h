@@ -61,6 +61,8 @@
 #define MICROP_I2C_WCMD_SIMCARD_DEBN_TIME		0x8A
 #define MICROP_I2C_WCMD_GPO_LED_STATUS_EN		0x90
 #define MICROP_I2C_WCMD_GPO_LED_STATUS_DIS		0x91
+#define MICROP_I2C_WCMD_OJ_INT_STATUS		0xA8
+
 
 /* Desire */
 #define IRQ_OJ 		(1<<12)  // verified in 2.6.29
