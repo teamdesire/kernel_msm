@@ -171,6 +171,7 @@ static uint32_t als_kadc;
 static struct wake_lock microp_i2c_wakelock;
 
 static struct i2c_client *private_microp_client;
+static struct microp_oj_callback *oj_callback;
 
 struct microp_int_pin {
 	uint16_t int_gsensor;
@@ -1337,9 +1338,18 @@ struct miscdevice lightsensor_misc = {
 	.fops = &lightsensor_fops
 };
 
-/*
- * G-sensor
- */
+static int microp_oj_intr_enable(struct i2c_client *client, uint8_t enable)
+{
+	int ret;
+
+	if (enable)
+		ret = microp_interrupt_enable(client, IRQ_OJ);
+	else
+		ret = microp_interrupt_disable(client, IRQ_OJ);
+
+	return ret;
+}
+
 static int microp_spi_enable(uint8_t on)
 {
 	struct i2c_client *client;
@@ -1355,6 +1365,36 @@ static int microp_spi_enable(uint8_t on)
 	return ret;
 }
 
+int microp_spi_vote_enable(int spi_device, uint8_t enable) {
+	//XXX need to check that all that crap in the HTC kernel is needed
+	struct i2c_client *client = private_microp_client;
+	int ret;
+
+	if (spi_device == SPI_OJ)
+		microp_oj_intr_enable(client, enable);
+
+	ret = microp_spi_enable(enable);
+	return ret;
+}
+
+/*
+ * OJ callback
+ */
+int microp_register_oj_callback(struct microp_oj_callback *oj)
+{
+	oj_callback = oj;
+
+	if (private_microp_client != NULL) {
+		oj_callback->oj_init = NULL;
+		return 0;
+	}
+
+	return 1;
+}
+
+/*
+ * G-sensor
+ */
 static int gsensor_read_reg(uint8_t reg, uint8_t *data)
 {
 	struct i2c_client *client;

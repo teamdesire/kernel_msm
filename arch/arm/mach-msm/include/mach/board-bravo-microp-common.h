@@ -70,6 +70,11 @@
 #define IRQ_HEADSETIN	(1<<2)	 // verified in 2.6.29
 #define IRQ_SDCARD      (1<<0)   // verified in 2.6.29
 
+//from 2.6.29
+#define SPI_GSENSOR				(1 << 0)
+#define SPI_LCM					(1 << 1)
+#define SPI_OJ					(1 << 2)
+
 /* Nexus
 #define IRQ_GSENSOR	(1<<10)
 #define IRQ_LSENSOR  	(1<<9)
@@ -78,8 +83,17 @@
 #define IRQ_SDCARD	(1<<0)
 */
 
+//callbacks for the OJ
+struct microp_oj_callback {
+	void (*oj_init)(void);
+	void (*oj_intr)(void);
+};
+int microp_register_oj_callback(struct microp_oj_callback *oj);
+
 //i2c access for drivers
 int microp_i2c_read(uint8_t addr, uint8_t *data, int length);
 int microp_i2c_write(uint8_t addr, uint8_t *data, int length);
+
+int microp_spi_vote_enable(int spi_device, uint8_t enable);
 
 #endif //_LINUX_BOARD_BRAVO_MICROP_COMMON_H
