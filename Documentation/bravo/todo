@@ -4,6 +4,6 @@ Fix the i2c (microp) bus
  * LED
  * Headphone
  * Remotekey
- * Optical
+ * Vibrator seems to be added twice and is not working
 
 Fix the Camera (crash the phone)
