@@ -2,7 +2,12 @@ Fix the i2c (microp) bus
  * GPS
  * Light sensor
  * LED
+<<<<<<< HEAD
  * Vibrator seems to be added twice and is not working
+=======
+ * Headphone
+ * Remotekey
+>>>>>>> 882fdf35ff91357ba57804108bcbe5174eb89275
 
 Fix the Camera (crash the phone)
 
