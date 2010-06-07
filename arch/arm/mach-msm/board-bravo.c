@@ -381,21 +381,6 @@ static int bravo_ts_power(int on)
 	return 0;
 }
 
-/*
-struct cy8c_i2c_platform_data bravo_cy8c_ts_data = {
-	.version = 0x0001,
-	.abs_x_min = 0,
-	.abs_x_max = 479,
-	.abs_y_min = 0,
-	.abs_y_max = 799,
-	.abs_pressure_min = 0,
-	.abs_pressure_max = 255,
-	.abs_width_min = 0,
-	.abs_width_max = 10,
-	.power = bravo_ts_power,
-};
-*/
-
 static struct synaptics_i2c_rmi_platform_data bravo_synaptics_ts_data[] = {
 	{
 		.version = 0x105,
