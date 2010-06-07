@@ -382,12 +382,12 @@ static int microp_read_gpi_status(struct i2c_client *client, uint16_t *status)
 	uint8_t data[2];
 	int ret;
 
-	ret = i2c_read_block(client, MICROP_I2C_RCMD_GPI_STATUS, data, 2);
+	ret = i2c_read_block(client, MICROP_I2C_RCMD_GPI_STATUS, data, 3);
 	if (ret < 0) {
 		dev_err(&client->dev, "%s: read failed\n", __func__);
 		return -EIO;
 	}
-	*status = (data[0] << 8) | data[1];
+	*status = (data[0] << 16 | data[1] << 8 | data[2]);
 	return 0;
 }
 
@@ -1707,9 +1707,6 @@ static void microp_i2c_intr_work_func(struct work_struct *work)
 	}
 
 	if ((intr_status & IRQ_LSENSOR) || cdata->force_light_sensor_read) {
-
-		dev_err(&client->dev, "LSENSOR\n") ;
-		
 		ret = microp_lightsensor_read(&adc_value, &adc_level);
 		if (cdata->force_light_sensor_read) {
 			/* report an invalid value first to ensure we trigger an event
@@ -1724,17 +1721,11 @@ static void microp_i2c_intr_work_func(struct work_struct *work)
 	}
 
 	if (intr_status & IRQ_SDCARD) {
-		
-	dev_err(&client->dev, "SDCARD\n") ;
-
 		microp_read_gpi_status(client, &gpi_status);
 		bravo_microp_sdslot_update_status(gpi_status);
 	}
 
 	if (intr_status & IRQ_HEADSETIN) {
-		
-		dev_err(&client->dev, "HEADSETIN\n") ;
-
 		cdata->is_hpin_pin_stable = 0;
 		wake_lock_timeout(&microp_i2c_wakelock, 3*HZ);
 		if (!cdata->headset_is_in)
@@ -1746,13 +1737,8 @@ static void microp_i2c_intr_work_func(struct work_struct *work)
 	}
 
 	if (intr_status & IRQ_REMOTEKEY) {
-
-		dev_err(&client->dev, "REMOTEKEY\n") ;
-		dev_err(&client->dev, "REMOTEKEY STABLE\n", cdata->is_hpin_pin_stable ) ;
-
 		if ((get_remote_keycode(&keycode) == 0) &&
 			(cdata->is_hpin_pin_stable)) {
-			dev_err(&client->dev, "REMOTEKEY %d\n", keycode ) ;
 			htc_35mm_key_event(keycode, &cdata->is_hpin_pin_stable);
 		}
 	}

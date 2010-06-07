@@ -1,8 +1,8 @@
 Fix the i2c (microp) bus
  * GPS
- * Light sensor
+ * Ambient light sensor
  * LED
- * Headphone
- * Remotekey
 
 Fix the Camera (crash the phone)
+
+Add dock on USB

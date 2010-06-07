@@ -381,21 +381,6 @@ static int bravo_ts_power(int on)
 	return 0;
 }
 
-/*
-struct cy8c_i2c_platform_data bravo_cy8c_ts_data = {
-	.version = 0x0001,
-	.abs_x_min = 0,
-	.abs_x_max = 479,
-	.abs_y_min = 0,
-	.abs_y_max = 799,
-	.abs_pressure_min = 0,
-	.abs_pressure_max = 255,
-	.abs_width_min = 0,
-	.abs_width_max = 10,
-	.power = bravo_ts_power,
-};
-*/
-
 static struct synaptics_i2c_rmi_platform_data bravo_synaptics_ts_data[] = {
 	{
 		.version = 0x105,
@@ -510,25 +495,7 @@ static struct i2c_board_info base_i2c_devices[] = {
 		I2C_BOARD_INFO("tps65023", 0x48),
 		.platform_data = tps65023_data,
 	},
-
-/*
-	{
-		I2C_BOARD_INFO("cy8c-tmg-ts", 0x34),
-		.platform_data = &bravo_cy8c_ts_data,
-		.irq = MSM_GPIO_TO_INT(BRAVO_GPIO_TP_INT_N),
-	},
-*/
 };
-/*
-	{
-		I2C_BOARD_INFO("tpa2018d1", 0x58),
-		.platform_data = &tpa2018_data,
-	},
-	{
-		I2C_BOARD_INFO("smb329", 0x6E >> 1),
-	},
-};
-*/
 
 static void config_gpio_table(uint32_t *table, int len);
 
@@ -1010,51 +977,6 @@ static struct msm_acpu_clock_platform_data bravo_clock_data = {
 	.mpll_khz		= 245000
 };
 
-/*
-static ssize_t bravo_virtual_keys_show(struct kobject *kobj,
-			       struct kobj_attribute *attr, char *buf)
-{
-	if (system_rev > 2 && system_rev != 0xC0) {
-		// center: x: back: 55, menu: 172, home: 298, search 412, y: 835
-		return sprintf(buf,
-			__stringify(EV_KEY) ":" __stringify(KEY_BACK)  ":55:835:90:55"
-		   ":" __stringify(EV_KEY) ":" __stringify(KEY_MENU)   ":172:835:125:55"
-		   ":" __stringify(EV_KEY) ":" __stringify(KEY_HOME)   ":298:835:115:55"
-		   ":" __stringify(EV_KEY) ":" __stringify(KEY_SEARCH) ":412:835:95:55"
-		   "\n");
-	} else {
-		// center: x: home: 55, menu: 185, back: 305, search 425, y: 835
-		return sprintf(buf,
-			__stringify(EV_KEY) ":" __stringify(KEY_HOME)  ":55:835:70:55"
-		   ":" __stringify(EV_KEY) ":" __stringify(KEY_MENU)   ":185:835:100:55"
-		   ":" __stringify(EV_KEY) ":" __stringify(KEY_BACK)   ":305:835:70:55"
-		   ":" __stringify(EV_KEY) ":" __stringify(KEY_SEARCH) ":425:835:70:55"
-		   "\n");
-	}
-}
-*/
-
-/*
-static struct kobj_attribute bravo_virtual_keys_attr = {
-	.attr = {
-		.name = "virtualkeys.synaptics-rmi-touchscreen",
-		.mode = S_IRUGO,
-	},
-	.show = &bravo_virtual_keys_show,
-};
-*/
-
-/*
-static struct attribute *bravo_properties_attrs[] = {
-	&bravo_virtual_keys_attr.attr,
-	NULL
-};
-
-static struct attribute_group bravo_properties_attr_group = {
-	.attrs = bravo_properties_attrs,
-}
-*/;
-
 static void bravo_reset(void)
 {
 	gpio_set_value(BRAVO_GPIO_PS_HOLD, 0);
@@ -1065,7 +987,6 @@ int bravo_init_mmc(int sysrev, unsigned debug_uart);
 static void __init bravo_init(void)
 {
 	int ret;
-//	struct kobject *properties_kobj;
 
 	printk("bravo_init() revision=%d\n", system_rev);
 
@@ -1109,13 +1030,6 @@ static void __init bravo_init(void)
 	ret = bravo_init_mmc(system_rev, debug_uart);
 	if (ret != 0)
 		pr_crit("%s: Unable to initialize MMC\n", __func__);
-
-//	properties_kobj = kobject_create_and_add("board_properties", NULL);
-//	if (properties_kobj)
-//		ret = sysfs_create_group(properties_kobj,
-//					 &bravo_properties_attr_group);
-//	if (!properties_kobj || ret)
-//		pr_err("failed to create board_properties\n");
 
 	bravo_audio_init();
 	bravo_headset_init();
