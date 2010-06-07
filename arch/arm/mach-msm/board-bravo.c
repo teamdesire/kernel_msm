@@ -169,28 +169,30 @@ static char *usb_functions_all[] = {
 
 static struct android_usb_product usb_products[] = {
 	{
-		.product_id	= 0x4e11,
+		.product_id	= 0x0ff9,
 		.num_functions	= ARRAY_SIZE(usb_functions_ums),
 		.functions	= usb_functions_ums,
 	},
 	{
-		.product_id	= 0x4e12,
+		.product_id	= 0x0c87,
 		.num_functions	= ARRAY_SIZE(usb_functions_ums_adb),
 		.functions	= usb_functions_ums_adb,
 	},
 	{
-		.product_id	= 0x4e13,
+		.product_id	= 0x0FFE,
 		.num_functions	= ARRAY_SIZE(usb_functions_rndis),
 		.functions	= usb_functions_rndis,
 	},
+	/*
+	XXX: there isn't a equivalent in htc's kernel
 	{
 		.product_id	= 0x4e14,
 		.num_functions	= ARRAY_SIZE(usb_functions_rndis_adb),
 		.functions	= usb_functions_rndis_adb,
-	},
+	}, */
 #ifdef CONFIG_USB_ANDROID_DIAG
 	{
-		.product_id	= 0x4e17,
+		.product_id	= 0x0c07,
 		.num_functions	= ARRAY_SIZE(usb_functions_adb_diag),
 		.functions	= usb_functions_adb_diag,
 	},
@@ -215,8 +217,8 @@ static struct platform_device usb_mass_storage_device = {
 #ifdef CONFIG_USB_ANDROID_RNDIS
 static struct usb_ether_platform_data rndis_pdata = {
 	/* ethaddr is filled by board_serialno_setup */
-	.vendorID	= 0x18d1,
-	.vendorDescr	= "Google, Inc.",
+	.vendorID	= 0x0bb4,
+	.vendorDescr	= "HTC",
 };
 
 static struct platform_device rndis_device = {
@@ -229,10 +231,10 @@ static struct platform_device rndis_device = {
 #endif
 
 static struct android_usb_platform_data android_usb_pdata = {
-	.vendor_id	= 0x18d1,
-	.product_id	= 0x4e11,
+	.vendor_id	= 0x0bb4,
+	.product_id	= 0x0c02,
 	.version	= 0x0100,
-	.product_name		= "Nexus One",
+	.product_name		= "Android Phone",
 	.manufacturer_name	= "Google, Inc.",
 	.num_products = ARRAY_SIZE(usb_products),
 	.products = usb_products,
