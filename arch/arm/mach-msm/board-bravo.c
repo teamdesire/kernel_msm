@@ -1120,10 +1120,7 @@ static void __init bravo_init(void)
 	bravo_audio_init();
 	bravo_headset_init();
 
-//	if (system_rev > 0)
-		platform_device_register(&bravo_timed_gpios);
-//	else
-	msm_init_pmic_vibrator();
+	platform_device_register(&bravo_timed_gpios);
 
 	ds2784_battery_init();
 }
