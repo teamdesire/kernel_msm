@@ -1,3 +1,20 @@
+/* arch/arm/mach-msm/board-bravo.h
+ *
+ * Copyright (C) 2009 HTC Corporation.
+ * Author: Haley Teng <Haley_Teng@htc.com>
+ * Copyright (C) 2010 Kali- <kalimero@ngi.it>
+ * Copyright (C) 2010 Diogo Ferreira <diogo@underdev.org>
+ *
+ * This software is licensed under the terms of the GNU General Public
+ * License version 2, as published by the Free Software Foundation, and
+ * may be copied, distributed, and modified under those terms.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+*/
+
 #ifndef _LINUX_BOARD_BRAVO_MICROP_COMMON_H
 #define _LINUX_BOARD_BRAVO_MICROP_COMMON_H
 
@@ -75,14 +92,6 @@
 #define SPI_GSENSOR				(1 << 0)
 #define SPI_LCM					(1 << 1)
 #define SPI_OJ					(1 << 2)
-
-/* Nexus
-#define IRQ_GSENSOR	(1<<10)
-#define IRQ_LSENSOR  	(1<<9)
-#define IRQ_REMOTEKEY	(1<<7)
-#define IRQ_HEADSETIN	(1<<2)
-#define IRQ_SDCARD	(1<<0)
-*/
 
 /* Optical Joystick callbacks */
 struct microp_oj_callback {

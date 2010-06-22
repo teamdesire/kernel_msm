@@ -2,6 +2,8 @@
  *
  * Copyright (C) 2009 Google.
  * Copyright (C) 2009 HTC Corporation.
+ * Copyright (C) 2010 Giulio Cervera <giulio.cervera@gmail.com>
+ * Copyright (C) 2010 Diogo Ferreira <diogo@underdev.org>
  *
  * The Microp on bravo is an i2c device that supports
  * the following functions
