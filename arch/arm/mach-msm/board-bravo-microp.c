@@ -1962,6 +1962,12 @@ static struct {
 		.attrs		= green_amber_attrs,
 		.attr_cnt	= ARRAY_SIZE(green_amber_attrs)
 	},
+	[AMBER_LED] = {
+		.name		= "amber",
+		.led_set_work   = microp_led_brightness_set_work,
+		.attrs		= green_amber_attrs,
+		.attr_cnt	= ARRAY_SIZE(green_amber_attrs)
+	},
 	[RED_LED] = {
 		.name		= "red",
 		.led_set_work   = microp_led_brightness_set_work,
