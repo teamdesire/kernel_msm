@@ -1051,6 +1051,7 @@ static void microp_led_buttons_brightness_set_work(struct work_struct *work)
 	/* duty cycle 0-255 */
 	data[1] = value;
 	/* bit2 == change brightness */
+	data[2] = 0x02;
 	data[3] = 0x04;
 
 	ret = i2c_write_block(client, MICROP_I2C_WCMD_BUTTONS_LED_CTRL,
