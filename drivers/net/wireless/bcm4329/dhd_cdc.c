@@ -758,7 +758,7 @@ dhd_preinit_ioctls(dhd_pub_t *dhd)
 	pkt_filter.u.pattern.offset = htod32(0);
 
 	/* Parse pattern filter mask. */
-	mask_size =	htod32(wl_pattern_atoh("0x01",
+	mask_size =	htod32(wl_pattern_atoh("0xff",
 		(char *) pkt_filterp->u.pattern.mask_and_pattern));
 
 	/* Parse pattern filter pattern. */
