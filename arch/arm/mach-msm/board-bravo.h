@@ -52,7 +52,7 @@
 #define BRAVO_GPIO_PS_HOLD		25
 
 #define BRAVO_GPIO_UP_INT_N		35
-#define BRAVO_GPIO_UP_RESET_N	82
+#define BRAVO_GPIO_UP_RESET_N		82
 #define BRAVO_GPIO_LS_EN_N		119
 
 #define BRAVO_GPIO_TP_INT_N		92
@@ -68,23 +68,23 @@
 #define BRAVO_GPIO_BALL_UP		38
 #define BRAVO_GPIO_BALL_DOWN		37
 #define BRAVO_GPIO_BALL_LEFT		145
-#define BRAVO_GPIO_BALL_RIGHT	21
+#define BRAVO_GPIO_BALL_RIGHT		21
 
-#define BRAVO_GPIO_BT_UART1_RTS	43
-#define BRAVO_GPIO_BT_UART1_CTS	44
-#define BRAVO_GPIO_BT_UART1_RX	45
-#define BRAVO_GPIO_BT_UART1_TX	46
-#define BRAVO_GPIO_BT_RESET_N	146
+#define BRAVO_GPIO_BT_UART1_RTS		43
+#define BRAVO_GPIO_BT_UART1_CTS		44
+#define BRAVO_GPIO_BT_UART1_RX		45
+#define BRAVO_GPIO_BT_UART1_TX		46
+#define BRAVO_GPIO_BT_RESET_N		146
 #define BRAVO_GPIO_BT_SHUTDOWN_N	128
 
 #define BRAVO_GPIO_BT_WAKE		57
-#define BRAVO_GPIO_BT_HOST_WAKE	86
+#define BRAVO_GPIO_BT_HOST_WAKE		86
 
 #define BRAVO_GPIO_PROXIMITY_INT_N	90
-#define BRAVO_GPIO_PROXIMITY_EN	120
+#define BRAVO_GPIO_PROXIMITY_EN		120
 
-#define BRAVO_GPIO_DS2482_SLP_N	87
-#define BRAVO_GPIO_VIBRATOR_ON	89
+#define BRAVO_GPIO_DS2482_SLP_N		87
+#define BRAVO_GPIO_VIBRATOR_ON		89
 
 /* Compass */
 #define BRAVO_GPIO_COMPASS_INT_N	153
@@ -100,13 +100,13 @@
 /* Audio */
 #define BRAVO_AUD_JACKHP_EN		157
 #define BRAVO_AUD_2V5_EN		158
-#define BRAVO_AUD_MICPATH_SEL 	111
+#define BRAVO_AUD_MICPATH_SEL 		111
 
 #define BRAVO_GPIO_AUD_SPK_AMP_EN	104
 
 /* Bluetooth PCM */
 #define BRAVO_BT_PCM_OUT		68
-#define BRAVO_BT_PCM_IN		69
+#define BRAVO_BT_PCM_IN			69
 #define BRAVO_BT_PCM_SYNC		70
 #define BRAVO_BT_PCM_CLK		71
 /* flash light */
@@ -121,16 +121,43 @@
 #define BRAVO_GPIO_KP_MPIN1             41
 #define BRAVO_GPIO_KP_MPIN2             40
 
-#define BRAVO_GPIO_LED_3V3_EN	85
+#define BRAVO_GPIO_LED_3V3_EN		85
 #define BRAVO_GPIO_LCD_RST_N		29
+#define MAHIMAHI_GPIO_LCD_ID0           147
 
 /* 3.5mm remote control key interrupt shutdown signal */
 #define BRAVO_GPIO_35MM_KEY_INT_SHUTDOWN	19
 
-#define BRAVO_GPIO_DOCK		106
+#define BRAVO_GPIO_DOCK				106
 
 #define BRAVO_GPIO_BATTERY_DETECTION		39
-#define BRAVO_GPIO_BATTERY_CHARGER_EN	22
+#define BRAVO_GPIO_BATTERY_CHARGER_EN		22
 #define BRAVO_GPIO_BATTERY_CHARGER_CURRENT	16
+
+/* display relative */
+#define MAHIMAHI_LCD_SPI_CLK            (17)
+#define MAHIMAHI_LCD_SPI_DO             (18)
+#define MAHIMAHI_LCD_SPI_CSz            (20)
+#define MAHIMAHI_LCD_RSTz               (29)
+#define MAHIMAHI_LCD_R1                 (114)
+#define MAHIMAHI_LCD_R2                 (115)
+#define MAHIMAHI_LCD_R3                 (116)
+#define MAHIMAHI_LCD_R4                 (117)
+#define MAHIMAHI_LCD_R5                 (118)
+#define MAHIMAHI_LCD_G0                 (121)
+#define MAHIMAHI_LCD_G1                 (122)
+#define MAHIMAHI_LCD_G2                 (123)
+#define MAHIMAHI_LCD_G3                 (124)
+#define MAHIMAHI_LCD_G4                 (125)
+#define MAHIMAHI_LCD_G5                 (126)
+#define MAHIMAHI_LCD_B1                 (130)
+#define MAHIMAHI_LCD_B2                 (131)
+#define MAHIMAHI_LCD_B3                 (132)
+#define MAHIMAHI_LCD_B4                 (133)
+#define MAHIMAHI_LCD_B5                 (134)
+#define MAHIMAHI_LCD_PCLK               (135)
+#define MAHIMAHI_LCD_VSYNC              (136)
+#define MAHIMAHI_LCD_HSYNC              (137)
+#define MAHIMAHI_LCD_DE                 (138)
 
 #endif /* __ARCH_ARM_MACH_MSM_BOARD_BRAVO_H */
